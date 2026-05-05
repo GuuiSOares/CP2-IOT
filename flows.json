@@ -1,0 +1,493 @@
+[
+    {
+        "id": "30f0f2946e2027d2",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2426c3df39333a24",
+        "type": "mqtt in",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "topic": "fiap/guilherme/temperatura",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "f5f121d5cff62709",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "02beb58964800d89",
+                "2416f4b2748ba06a",
+                "a4a9e4c296a58daa"
+            ]
+        ]
+    },
+    {
+        "id": "02beb58964800d89",
+        "type": "debug",
+        "z": "30f0f2946e2027d2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "2416f4b2748ba06a",
+        "type": "ui_gauge",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "group": "ea168f98eb84f109",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 970,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d5f99c0ea23bb789",
+        "type": "ui_gauge",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "group": "ea168f98eb84f109",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Distância",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "400",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 960,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "5a5988beaad1a540",
+        "type": "ui_gauge",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "group": "ea168f98eb84f109",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Umidade",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 960,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "68a716ea555a6474",
+        "type": "mqtt in",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "topic": "fiap/guilherme/umidade",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "f5f121d5cff62709",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "5a5988beaad1a540",
+                "02beb58964800d89",
+                "a4a9e4c296a58daa"
+            ]
+        ]
+    },
+    {
+        "id": "3b36f9456e280bbd",
+        "type": "mqtt in",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "topic": "fiap/guilherme/distancia",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "f5f121d5cff62709",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 660,
+        "y": 260,
+        "wires": [
+            [
+                "d5f99c0ea23bb789",
+                "02beb58964800d89",
+                "a4a9e4c296a58daa"
+            ]
+        ]
+    },
+    {
+        "id": "26558d58ea5da8c9",
+        "type": "inject",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 610,
+        "y": 500,
+        "wires": [
+            [
+                "e3f91903d885b7f1"
+            ]
+        ]
+    },
+    {
+        "id": "e3f91903d885b7f1",
+        "type": "http request",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.open-meteo.com/v1/forecast?latitude=-23.5475&longitude=-46.6361&current_weather=true",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 890,
+        "y": 500,
+        "wires": [
+            [
+                "3ef5b1bac7564894"
+            ]
+        ]
+    },
+    {
+        "id": "3ef5b1bac7564894",
+        "type": "change",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.current_weather.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 600,
+        "wires": [
+            [
+                "670fd93ae43ae9e9"
+            ]
+        ]
+    },
+    {
+        "id": "670fd93ae43ae9e9",
+        "type": "ui_text",
+        "z": "30f0f2946e2027d2",
+        "group": "ea168f98eb84f109",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Clima Real SP",
+        "format": "{{msg.payload}} °C",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 900,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "141d500b54e33b7c",
+        "type": "inject",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 680,
+        "y": 740,
+        "wires": [
+            [
+                "14fa709bc0d25969"
+            ]
+        ]
+    },
+    {
+        "id": "14fa709bc0d25969",
+        "type": "function",
+        "z": "30f0f2946e2027d2",
+        "name": "function 1",
+        "func": "msg.topic = \"CREATE TABLE IF NOT EXISTS medicoes (id INTEGER PRIMARY KEY AUTOINCREMENT, temperatura REAL, umidade REAL, distancia REAL, data_hora DATETIME DEFAULT CURRENT_TIMESTAMP);\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 740,
+        "wires": [
+            [
+                "fae1c12107442a34"
+            ]
+        ]
+    },
+    {
+        "id": "fae1c12107442a34",
+        "type": "sqlite",
+        "z": "30f0f2946e2027d2",
+        "mydb": "90a238af2933d2ef",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1160,
+        "y": 740,
+        "wires": [
+            [
+                "f1e1cf648cd11c4c"
+            ]
+        ]
+    },
+    {
+        "id": "a4a9e4c296a58daa",
+        "type": "function",
+        "z": "30f0f2946e2027d2",
+        "name": "Preparar SQL",
+        "func": "global.set(msg.topic.split('/').pop(), msg.payload);\n\nvar temp = global.get(\"temperatura\") || 0;\nvar umi = global.get(\"umidade\") || 0;\nvar dist = global.get(\"distancia\") || 0;\n\nmsg.topic = \"INSERT INTO medicoes (temperatura, umidade, distancia) VALUES (\"+temp+\", \"+umi+\", \"+dist+\");\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 420,
+        "wires": [
+            [
+                "fae1c12107442a34"
+            ]
+        ]
+    },
+    {
+        "id": "986d240e02533e73",
+        "type": "inject",
+        "z": "30f0f2946e2027d2",
+        "name": "Ver Banco",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 620,
+        "y": 900,
+        "wires": [
+            [
+                "c0073e3a905bde1c"
+            ]
+        ]
+    },
+    {
+        "id": "c0073e3a905bde1c",
+        "type": "change",
+        "z": "30f0f2946e2027d2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "SELECT * FROM medicoes ORDER BY id DESC LIMIT 10;",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 900,
+        "wires": [
+            [
+                "fae1c12107442a34"
+            ]
+        ]
+    },
+    {
+        "id": "f1e1cf648cd11c4c",
+        "type": "debug",
+        "z": "30f0f2946e2027d2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "f5f121d5cff62709",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ea168f98eb84f109",
+        "type": "ui_group",
+        "name": "Sensores",
+        "tab": "7ff76345203cf2ec",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "90a238af2933d2ef",
+        "type": "sqlitedb",
+        "db": "banco.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "7ff76345203cf2ec",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
