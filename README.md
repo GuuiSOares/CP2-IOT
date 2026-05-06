@@ -27,6 +27,32 @@ A arquitetura segue o modelo de camadas para IoT:
 * **API Externa:** Open-Meteo (Dados Climáticos)
 * **Linguagens:** C++ (Arduino IDE/Wokwi), JavaScript (Node-RED Functions), SQL
 
+## 🗄️ Estrutura do Banco de Dados
+O projeto contempla a criação de uma tabela para histórico de sensores.
+
+### Script para SQLite (Execução Atual)
+```sql
+CREATE TABLE IF NOT EXISTS medicoes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    temperatura REAL,
+    umidade REAL,
+    distancia REAL,
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+```sql
+CREATE DATABASE IF NOT EXISTS iot_db;
+USE iot_db;
+
+CREATE TABLE medicoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    temperatura FLOAT,
+    umidade FLOAT,
+    distancia FLOAT,
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 ## 🚀 Instruções de Execução
 
 ### 1. Simulação do Hardware (Wokwi)
